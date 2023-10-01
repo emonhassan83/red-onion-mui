@@ -20,7 +20,7 @@ const CustomTabs = styled(Tabs)(({ theme }) => ({
   },
   "& .Mui-selected": {
     backgroundColor: theme.palette.primary.main,
-    color: "#ffff",
+    color: "#ffffff !important",
     borderRadius: "15px",
   },
   "& .MuiTabs-indicator": {
@@ -37,9 +37,9 @@ export default function TabButtons({value, setValue}) {
   return (
     <Box sx={{ width: "100%", bgcolor: "background.paper" }}>
       <CustomTabs value={value} onChange={handleChange} centered>
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
-        <Tab label="Item Three" />
+        <Tab label="Breakfast" />
+        <Tab label="Lunch" />
+        <Tab label="Dinner" />
       </CustomTabs>
     </Box>
   );
