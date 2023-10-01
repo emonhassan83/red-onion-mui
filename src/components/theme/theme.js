@@ -22,7 +22,7 @@ export const theme = createTheme({
                 padding: '0.5rem 2rem',
                 borderRadius: '40px',
                 textTransform: 'capitalize',
-                color: '#191919'
+                color: '#ffffff'
                } 
             },
             defaultProps: {
