@@ -8,6 +8,9 @@ import { theme } from "./components/theme/theme";
 import Login from "./pages/Login/Login";
 import Register from "./pages/Register/Register";
 import AuthContextProvider from "./context/AuthContextProvider";
+import MealDetails from "./pages/MealDetails/MealDetails";
+import Checkout from "./pages/Checkout/Checkout";
+import OrderStatus from "./pages/OrderStatus/OrderStatus";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +28,18 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/meal-details/:meal-id",
+        element: <MealDetails />,
+      },
+      {
+        path: "/checkout",
+        element: <Checkout />,
+      },
+      {
+        path: "/order-status",
+        element: <OrderStatus />,
       },
     ],
   },
