@@ -10,7 +10,7 @@ const FoodCategory = () => {
   const [value, setValue] = React.useState(0);
 
   const { meals, loading } = useMeals(categories[value]);
-  console.log(meals);
+
 
   return (
     <Box>
