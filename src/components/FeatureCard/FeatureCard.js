@@ -18,7 +18,7 @@ const FeatureCard = ({ feature }) => {
             borderRadius: 5,
             p: 2,
             '&:hover': {
-               boxShadow: 25,
+               boxShadow: 24,
             },
          }}
       >
