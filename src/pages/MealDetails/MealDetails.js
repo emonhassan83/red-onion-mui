@@ -4,17 +4,19 @@ import { FlexBox } from "../../components/styled/FlexBox";
 import useMealById from "../../hooks/useMealsById";
 import AddIcon from "@mui/icons-material/Add";
 import RemoveIcon from "@mui/icons-material/Remove";
-import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { CounterBox } from "./MealDetails.style";
 import { useState } from "react";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
 
 const MealDetails = () => {
   const { mealId } = useParams();
-  const { meal } = useMealById(mealId);
+  const { meal, loading } = useMealById(mealId);
   console.log({ meal });
 
   const [quantity, setQuantity] = useState(0);
+
+  if (loading) return <h2>Loading.......</h2>;
 
   return (
     <Box>
@@ -53,25 +55,34 @@ const MealDetails = () => {
                   <RemoveIcon />
                 </CounterBox>
               </FlexBox>
-              <Button startIcon={<ShoppingCartOutlinedIcon/>} sx={{
-                width: ['100%','100%','40%']
-              }}>Add</Button>
+              <Button
+                startIcon={<ShoppingCartOutlinedIcon />}
+                sx={{
+                  width: ["100%", "100%", "40%"],
+                }}
+              >
+                Add
+              </Button>
             </Stack>
 
             {/* Image Slider */}
             <Box mt={10}>
-              <ImageSlider images={meal.images}/>
+              <ImageSlider images={meal.images} />
             </Box>
           </Box>
 
           {/* image will go here */}
           <Box sx={{ flex: 1 }}>
-            <img src={meal?.defaultImage} alt="meal" style={{
-              maxWidth: '100%',
-              width: '500px',
-              margin: '0 auto',
-              display: 'block',
-            }} />
+            <img
+              src={meal?.defaultImage}
+              alt="meal"
+              style={{
+                maxWidth: "100%",
+                width: "500px",
+                margin: "0 auto",
+                display: "block",
+              }}
+            />
           </Box>
         </FlexBox>
       </Container>

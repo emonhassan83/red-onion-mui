@@ -12,8 +12,9 @@ import MealDetails from "./pages/MealDetails/MealDetails";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import CartContextProvider from "./context/CartContextProvider";
 
 const router = createBrowserRouter([
   {
@@ -56,10 +57,12 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthContextProvider>
-        <div className="App">
-          <CssBaseline />
-          <RouterProvider router={router} />
-        </div>
+        <CartContextProvider>
+          <div className="App">
+            <CssBaseline />
+            <RouterProvider router={router} />
+          </div>
+        </CartContextProvider>
       </AuthContextProvider>
     </ThemeProvider>
   );
