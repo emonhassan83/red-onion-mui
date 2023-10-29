@@ -8,15 +8,41 @@ import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import { CounterBox } from "./MealDetails.style";
 import { useState } from "react";
 import ImageSlider from "../../components/ImageSlider/ImageSlider";
+import { useCart } from "../../hooks/useCart";
 
 const MealDetails = () => {
   const { mealId } = useParams();
   const { meal, loading } = useMealById(mealId);
-  console.log({ meal });
-
+  const { cart, setCart } = useCart();
   const [quantity, setQuantity] = useState(0);
 
   if (loading) return <h2>Loading.......</h2>;
+  const addToCartHandler = () => {
+    setCart(() => [
+      ...cart,
+      {
+        ...meal,
+        quantity,
+      },
+    ]);
+  };
+
+  const adjustQuantity = (type) => {
+    setQuantity(type === 'add' ? quantity + 1 : quantity - 1);
+    setCart((cart) =>
+       cart.map((item) => {
+          if (item._id === meal._id) {
+             return {
+                ...item,
+                quantity:
+                   type === 'add' ? item.quantity + 1 : item.quantity - 1,
+             };
+          }
+
+          return item;
+       })
+    );
+ };
 
   return (
     <Box>
@@ -40,11 +66,11 @@ const MealDetails = () => {
 
               <FlexBox>
                 <Typography variant="h4" fontWeight={400}>
-                  ${meal?.price}
+                  ${(meal?.price*quantity).toFixed(2)}
                 </Typography>
 
                 <CounterBox>
-                  <AddIcon />
+                <AddIcon onClick={() => adjustQuantity('add')} />
                   <Typography
                     variant="h5"
                     sx={{ width: "20px" }}
@@ -52,7 +78,7 @@ const MealDetails = () => {
                   >
                     {quantity}
                   </Typography>
-                  <RemoveIcon />
+                  <RemoveIcon onClick={() => adjustQuantity('remove')} />
                 </CounterBox>
               </FlexBox>
               <Button
@@ -60,6 +86,7 @@ const MealDetails = () => {
                 sx={{
                   width: ["100%", "100%", "40%"],
                 }}
+                onClick={addToCartHandler}
               >
                 Add
               </Button>
