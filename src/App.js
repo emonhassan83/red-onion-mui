@@ -11,6 +11,9 @@ import AuthContextProvider from "./context/AuthContextProvider";
 import MealDetails from "./pages/MealDetails/MealDetails";
 import Checkout from "./pages/Checkout/Checkout";
 import OrderStatus from "./pages/OrderStatus/OrderStatus";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 
 const router = createBrowserRouter([
   {
@@ -30,8 +33,12 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: '/meal-details/:mealId',
-        element: <MealDetails />,
+        path: "/meal-details/:mealId",
+        element: (
+          <PrivateRoute>
+            <MealDetails />
+          </PrivateRoute>
+        ),
       },
       {
         path: "/checkout",

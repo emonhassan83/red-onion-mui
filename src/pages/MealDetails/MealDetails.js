@@ -7,6 +7,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { CounterBox } from "./MealDetails.style";
 import { useState } from "react";
+import ImageSlider from "../../components/ImageSlider/ImageSlider";
 
 const MealDetails = () => {
   const { mealId } = useParams();
@@ -56,6 +57,11 @@ const MealDetails = () => {
                 width: ['100%','100%','40%']
               }}>Add</Button>
             </Stack>
+
+            {/* Image Slider */}
+            <Box mt={10}>
+              <ImageSlider images={meal.images}/>
+            </Box>
           </Box>
 
           {/* image will go here */}
